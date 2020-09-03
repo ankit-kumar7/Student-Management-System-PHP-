@@ -46,8 +46,8 @@ if(isset($_POST['submit']))
     $run = mysqli_query($con,$query);
     if($run==true)
     {
-        while($data = mysqli_fetch_assoc($run))
-        {
+        $data = mysqli_fetch_assoc($run);
+    
             if($user == $data['Username'] && $pass == $data['Password'])
             {
                 ?> <script>
@@ -57,11 +57,9 @@ if(isset($_POST['submit']))
                 <?php
                 $temp=1;
                 session_start();
-                $_SESSION['uid'] = $data['Id'];
-                echo"php";
+                $_SESSION['uid'] = $data['Username'];
                 header('location:admin/admindash.php');
-            }
-        }
+           }
         if($temp!=1)
         {
             ?>
